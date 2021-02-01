@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: eureka-demo-registry
+eureka:
+  dashboard:
+    # 启用eureka控制台页面（默认：true，可以不配置）
+    enabled: true
+  client:
+    # 禁止eureka server自身当做服务注册
+    register-with-eureka: true
+    # 屏蔽eureka server自身的注册信息
+    fetch-registry: true
+  server:
+    # 开启自我保护模式（默认：true，可以不配置）
+    enable-self-preservation: true
+---
+# eureka 注册中心实例1
+spring:
+  config:
+    activate:
+      on-profile: registry-instance-1
+server:
+  port: 8901
+eureka:
+  instance:
+    # 请在本地host当中增加主机名称映射，否则无法模拟单机集群环境
+    hostname: registry1.myapp.com
+  client:
+    service-url:
+      # 这里设置集群内的其它节点的访问地址，有多少配多少
+      defaultZone: http://registry2.myapp.com:8902/eureka,http://registry3.myapp.com:8903/eureka
+---
+  # eureka 注册中心实例2
+  spring:
+    config:
+      activate:
+        on-profile: registry-instance-2
+  server:
+    # 实例2的端口
+    port: 8902
+  eureka:
+    instance:
+      # 请在本地host当中增加主机名称映射，否则无法模拟单机集群环境
+      hostname: registry2.myapp.com
+    client:
+      service-url:
+        # 这里设置集群内的其它节点的访问地址，有多少配多少
+        defaultZone: http://registry1.myapp.com:8901/eureka,http://registry3.myapp.com:8903/eureka
+---
+  # eureka 注册中心实例3
+  spring:
+    config:
+      activate:
+        on-profile: registry-instance-3
+  server:
+    # 实例3的端口
+    port: 8903
+  eureka:
+    instance:
+      # 请在本地host当中增加主机名称映射，否则无法模拟单机集群环境
+      hostname: registry3.myapp.com
+    client:
+      service-url:
+        # 这里设置集群内的其它节点的访问地址，有多少配多少
+        defaultZone: http://registry1.myapp.com:8901/eureka,http://registry2.myapp.com:8902/eureka

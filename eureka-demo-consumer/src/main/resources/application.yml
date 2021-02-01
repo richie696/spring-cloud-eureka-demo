@@ -1,0 +1,14 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: remote-consumer
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@
+  client:
+    service-url:
+      defaultZone: http://registry1.myapp.com:8901/eureka,http://registry2.myapp.com:8902/eureka,http://registry3.myapp.com:8903/eureka
+    # 每隔指定时间从服务中心获取最新列表到本地，并刷新本地缓存（默认：30秒，此处一般无需配置也无需修改）
+    registry-fetch-interval-seconds: 30

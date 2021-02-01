@@ -1,0 +1,43 @@
+server:
+  # 服务器访问端口
+  port: 8080
+spring:
+  application:
+    # 服务名称
+    name: login-service-provider
+  # 数据库配置信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sc-demo?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: pm
+    password: pm@123456
+  # spring-data-jpa配置信息
+  jpa:
+    # 设置数据库方言
+    database: mysql
+    # 设置是否在控制台显示SQL语句
+    show-sql: true
+    # 设置Hibernate的命名策略，这里的数据库表名内包含_，在类中转换为
+    # 大写字母形式（比如：表名account_info变为AccountInfo）
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+eureka:
+  instance:
+    # eureka实例注册时是用IP地址进行注册
+    prefer-ip-address: true
+    # 实例名称规则（这里使用物理机的IP + 应用名称+服务端口+接口版本号组合，
+    # 可以方便的在Eureka控制台页面区分出对应接口的版本及物理机IP等信息）
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}:@project.version@
+    # 租约续期时间间隔（默认30秒，每隔30秒往Eureka发送心跳包）
+    lease-renewal-interval-in-seconds: 30
+    # 租约到期时效时间间隔（默认90秒，当90秒内都收不到心跳包则判定该服务端过期，将对过期的服务段IP进行清除。）
+    lease-expiration-duration-in-seconds: 90
+  # 注册中心的访问地址列表
+  client:
+    service-url:
+      defaultZone: http://registry1.myapp.com:8901/eureka,http://registry2.myapp.com:8902/eureka,http://registry3.myapp.com:8903/eureka
+# 机器配置信息
+my-server:
+  datacenterId: 1
+  machineId: 1

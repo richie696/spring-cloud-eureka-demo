@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 扩展自parent模块，所有的依赖都从parent里面要 -->
+    <parent>
+        <artifactId>eureka-demo-parent</artifactId>
+        <groupId>com.richie696</groupId>
+        <version>1.0.0-RELEASE</version>
+        <relativePath>../eureka-demo-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 指定当前子模块打包成jar包 -->
+    <packaging>jar</packaging>
+
+    <artifactId>eureka-demo-domain</artifactId>
+
+    <dependencies>
+        <!-- 数据库访问采用data-jpa -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!-- 算法工具箱 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

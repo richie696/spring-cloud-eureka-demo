@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 扩展自parent模块，所有的依赖都从parent里面要 -->
+    <parent>
+        <artifactId>eureka-demo-parent</artifactId>
+        <groupId>com.richie696</groupId>
+        <version>1.0.0-RELEASE</version>
+        <relativePath>../eureka-demo-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <!-- 指定当前子模块打包成jar包 -->
+    <packaging>jar</packaging>
+
+    <artifactId>eureka-demo-consumer</artifactId>
+
+    <dependencies>
+        <!-- 公共域模块的引用 -->
+        <dependency>
+            <groupId>com.richie696</groupId>
+            <artifactId>eureka-demo-domain</artifactId>
+        </dependency>
+        <!-- Eureka server依赖引用 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+        <!-- 新版Cloud开始需要配置config包，老版本不需要 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

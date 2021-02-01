@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承Spring Boot Starter的父工程依赖，并且在这里
+           指定整个Spring Boot工程的版本，在后续的子工程中
+           将不再指定Spring Boot的版本信息，将版本控制交给
+           Parent去处理，最大限度的解决和Spring Cloud的版
+           本冲突问题  -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.2</version>
+    </parent>
+    <!-- 本Demo工程的版本信息 -->
+    <groupId>com.richie696</groupId>
+    <artifactId>spring-cloud-eureka-demo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-RELEASE</version>
+
+    <!-- 本Demo工程的子模块 -->
+    <modules>
+        <module>eureka-demo-parent</module>
+        <module>eureka-demo-registry</module>
+        <module>eureka-demo-domain</module>
+        <module>eureka-demo-provider</module>
+        <module>eureka-demo-consumer</module>
+    </modules>
+
+    <!-- 全局的属性定义 -->
+    <properties>
+        <file.encoding>UTF-8</file.encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+    </properties>
+
+    <!-- 私服配置 -->
+    <repositories>
+        <!-- 阿里云公共仓库，该仓库地址合并了maven中央仓库(central)和
+                jcenter 仓库的所有内容，所以严重推荐大家使用该仓库进行国内
+                的仓库访问加速服务。 -->
+        <repository>
+            <id>aliyunmaven</id>
+            <name>阿里云公共仓库</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <!-- Spring阿里云加速镜像 -->
+        <repository>
+            <id>spring</id>
+            <url>https://maven.aliyun.com/repository/spring</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <!-- Spring Plugin阿里云加速镜像 -->
+        <repository>
+            <id>spring-plugin</id>
+            <url>https://maven.aliyun.com/repository/spring-plugin</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
