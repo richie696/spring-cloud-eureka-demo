@@ -16,7 +16,7 @@
     </parent>
     <!-- 本Demo工程的版本信息 -->
     <groupId>com.richie696</groupId>
-    <artifactId>spring-cloud-eureka-demo</artifactId>
+    <artifactId>spring-cloud-2020-demo</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-RELEASE</version>
 
@@ -33,8 +33,8 @@
     <properties>
         <file.encoding>UTF-8</file.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
     </properties>
 
     <!-- 私服配置 -->

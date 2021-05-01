@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>spring-cloud-eureka-demo</artifactId>
+        <artifactId>spring-cloud-2020-demo</artifactId>
         <groupId>com.richie696</groupId>
         <version>1.0.0-RELEASE</version>
         <relativePath>../pom.xml</relativePath>
@@ -27,8 +27,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>15</source>
-                    <target>15</target>
+                    <source>16</source>
+                    <target>16</target>
                     <encoding>UTF-8</encoding>
                     <!-- 编译时保存方法参数名称（启用该设置以后参数名就不会变成arg0、arg1……） -->
                     <compilerArgs>
@@ -159,6 +159,11 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>30.1-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-spring-cloud2</artifactId>
+                <version>1.7.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

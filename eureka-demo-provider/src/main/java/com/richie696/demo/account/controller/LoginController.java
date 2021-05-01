@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @RequestMapping("/account")
 public class LoginController {
@@ -22,8 +25,13 @@ public class LoginController {
     }
 
     @GetMapping("/login/{name}/{password}")
-    public String login(@PathVariable String name, @PathVariable String password) {
+    public String login(@PathVariable String name, @PathVariable String password, HttpServletRequest request) {
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException ignored) {
+        }
         ExecuteResult<AccountInfo> result = this.accountService.doLogin(name, password);
-        return JsonUtils.serialize(result, true);
+        return String.format("<span>【处理服务器】: %s:%s</span><br><span>【应答数据】:</span><pre>%s</pre>",
+                request.getRemoteHost(), request.getServerPort(), JsonUtils.serialize(result, true));
     }
 }

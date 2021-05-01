@@ -1,6 +1,3 @@
-server:
-  # 服务器访问端口
-  port: 8080
 spring:
   application:
     # 服务名称
@@ -37,7 +34,42 @@ eureka:
   client:
     service-url:
       defaultZone: http://registry1.myapp.com:8901/eureka,http://registry2.myapp.com:8902/eureka,http://registry3.myapp.com:8903/eureka
+---
+# 登录服务提供者实例1
+spring:
+  config:
+    activate:
+      on-profile: login-instance-1
 # 机器配置信息
 my-server:
   datacenterId: 1
   machineId: 1
+# 服务器访问端口
+server:
+  port: 8080
+---
+# 登录服务提供者实例1
+spring:
+  config:
+    activate:
+      on-profile: login-instance-2
+# 机器配置信息
+my-server:
+  datacenterId: 1
+  machineId: 2
+# 服务器访问端口
+server:
+  port: 8081
+---
+# 登录服务提供者实例1
+spring:
+  config:
+    activate:
+      on-profile: login-instance-3
+# 机器配置信息
+my-server:
+  datacenterId: 1
+  machineId: 3
+# 服务器访问端口
+server:
+  port: 8082

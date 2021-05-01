@@ -12,6 +12,19 @@
     <modelVersion>4.0.0</modelVersion>
     <!-- 指定当前子模块打包成jar包 -->
     <packaging>jar</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <artifactId>eureka-demo-domain</artifactId>
 

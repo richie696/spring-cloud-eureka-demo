@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: remote-consumer
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: true
 eureka:
   instance:
     prefer-ip-address: true
@@ -12,3 +16,24 @@ eureka:
       defaultZone: http://registry1.myapp.com:8901/eureka,http://registry2.myapp.com:8902/eureka,http://registry3.myapp.com:8903/eureka
     # 每隔指定时间从服务中心获取最新列表到本地，并刷新本地缓存（默认：30秒，此处一般无需配置也无需修改）
     registry-fetch-interval-seconds: 30
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        # 是否向 Actuator 的 HealthIndicator 注册
+        registerHealthIndicator: true
+        # 滑动窗口大小，如果配置COUNT_BASED默认值100就代表是最近100
+        # 个请求，如果配置TIME_BASED默认值100就代表是最近100s的请求。
+        slidingWindowSize: 10
+        # 最小请求个数。只有在滑动窗口内，请求个数达到这个个数，才会触
+        # 发CircuitBreaker对于是否打开断路器的判断。
+        minimumNumberOfCalls: 5
+        # 滑动窗口类型，COUNT_BASED代表是基于计数的滑动窗口，
+        # TIME_BASED代表是基于计时的滑动窗口
+        slidingWindowType: TIME_BASED
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 2s
+        failureRateThreshold: 30
+        recordExceptions:
+          - java.lang.Exception

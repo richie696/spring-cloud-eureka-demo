@@ -5,11 +5,8 @@ import com.google.common.hash.HashCode;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
 
 @SuppressWarnings("UnstableApiUsage")
 public class HashUtils {
